@@ -1,0 +1,132 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 style="color:blue"><i class="fa-solid fa-user" style="color:blue"></i>&nbsp; &nbsp;Add Contacts Page
+
+
+            </h1>
+            <!-- content -->
+            <p class="text-align:justify-content">This is dummy content: Lorem ipsum dolor sit amet consectetur
+                adipisicing elit. Modi quos dicta fuga est
+                minima. Quam temporibus blanditiis itaque, voluptas sequi, voluptatem facilis iste exercitationem
+                eligendi eum minima repellat accusantium nisi! Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Rerum, a. Commodi, ea? Reprehenderit rem labore culpa rerum. Porro cupiditate laborum, necessitatibus
+                exercitationem dolores ea, architecto minima dolor nostrum accusamus odit!</p>
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="container">
+    <div class="row d-flex">
+        <div class="col-lg-8">
+            <form class="border p-5 rounded" #addContactForm="ngForm">
+                <!-- id -->
+                <div class="mb-2">
+                    <input name="id" #id="ngModel" [(ngModel)]="contact.id" type="text" class="form-control "
+                        placeholder="contact id" required>
+                </div>
+                <!-- id validation -->
+                <div *ngIf="id.invalid && id.touched" class="mb-2 text-danger">
+                    please enter a valid id
+                </div>
+                <!-- name -->
+                <div class="mb-2">
+                    <input #name="ngModel" name="name" [(ngModel)]="contact.name" type="text" class="form-control "
+                        placeholder="contact name" required pattern="[a-zA-Z ]*">
+                </div>
+                <!-- name validation -->
+                <div *ngIf="name.invalid && name.touched" class="mb-2 text-danger">
+                    please enter a valid name
+                </div>
+
+                <!-- contact photo -->
+                <div class="mb-2">
+                    <input required #photo="ngModel" name="photo" [(ngModel)]="contact.photo" type="text"
+                        class="form-control " placeholder="contact image url">
+                </div>
+                <!-- photo validation -->
+                <div *ngIf="photo.invalid && photo.touched" class="mb-2 text-danger">
+                    please enter a valid contact photo
+                </div>
+                <!-- contact number -->
+                <div class="mb-2">
+                    <input #mobile="ngModel" required name="mobile" [(ngModel)]="contact.mobile" type="text"
+                        class="form-control " placeholder="contact number" pattern="[0-9]*" minlength="10"
+                        maxlength="10">
+                </div>
+                <!-- validation of contact  number  -->
+                <div *ngIf="mobile.invalid && mobile.touched" class="mb-2 text-danger">
+                    please enter a valid number
+                </div>
+                <!-- email -->
+                <div class="mb-2">
+                    <input #email="ngModel" name="email" [(ngModel)]="contact.email" type="email" class="form-control "
+                        placeholder="contact email id  " email required>
+                </div>
+                <!-- validation email -->
+                <div *ngIf="email.invalid && email.touched" class="mb-2 text-danger">
+                    please enter a valid name
+                </div>
+                <!-- company name -->
+                <div class="mb-2">
+                    <input required name="company" [(ngModel)]="contact.company" type="text" class="form-control "
+                        placeholder="contact company name">
+                </div>
+
+
+                <div class="mb-2">
+                    <input required #title="ngModel" name="title" [(ngModel)]="contact.title" type="text"
+                        class="form-control " placeholder="contact title">
+                </div>
+
+                <div *ngIf="title.invalid && title.touched" class="mb-2 text-danger">
+                    please enter a valid name
+                </div>
+
+                <div class="mb-2">
+                    <select name="" id="" class="form-control" name="groupId" #groupId="ngModel"
+                        [(ngModel)]="contact.groupId" pattern="[0-9]*" required>
+                        <option disabled selected hidden value=""> {{contact.groupId}} </option>
+                        <option [value]="group.id" *ngFor="let group of groups">{{group.name}}</option>
+
+                    </select>
+
+                </div>
+                <div class="d-flex  mt-4 justify-content-end m-3">
+
+                    <input class="btn btn-success" value="create" type="button" [disabled]="addContactForm.invalid" (click)="addContact(contact)">
+                    <button type="button" class="btn btn-danger ms-2" routerLink=""> close</button>
+
+
+                </div>
+            </form>
+
+
+
+        </div>
+
+        <!-- contact card -->
+        <div class=" col-lg-4 d-flex justify-content-center">
+            <div [hidden]="addContactForm.invalid" class="card align-items-center p-2 " style="width: 18rem;">
+                <img [src]="contact.photo" alt="no" width="100px" height="100px">
+
+                <div class="card-body">
+                    <h5 class="card-title">{{contact.name}}</h5>
+                    <p>id:{{contact.id}}</p>
+                    <p>mobile:{{contact.mobile}}</p>
+                    <p>email:{{contact.email}}</p>
+                    <p>company:{{contact.company}}</p>
+                    <p>title:{{contact.title}}</p>
+                    <p>group:{{contact.groupId}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
